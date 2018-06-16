@@ -1,0 +1,225 @@
+html, body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  cursor: pointer;
+}
+
+body {
+  /* background-color: #6179b7; */
+  background-color: #7a92d3;
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+  min-height: 800px;
+  /* padding-bottom: 100px; */
+}
+nav {
+  height: 64px;
+  width: 100%;
+  background-color: indigo;
+}
+
+mark {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.hero-banner {
+  width: 100%;
+  height: 600px;
+  background: url('../img/preview.jpg') 50% 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero-banner {
+    height: 300px !important;
+  }
+
+  .hero-banner .welcome-text {
+    font-size: 20px !important;
+    padding-top: 60px !important;
+  }
+}
+
+.hero-banner .welcome-title {
+  font-family: 'Dancing Script', cursive;
+  color: white;
+  font-size: 5vw;
+}
+
+.hero-banner .welcome-text {
+  padding-top: 200px;
+  color: white;
+  font-size: 2vw;
+}
+
+#tracks-container {
+  max-width: 1000px;
+  min-height: 600px;
+  margin: 15px auto;
+}
+.choose-view {
+  display: block;
+  text-align: center;
+}
+.choose-view li {
+  display: inline;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: indigo;
+}
+.choose-view li.selected {
+  text-decoration: underline;
+}
+
+h1, strong {
+  color: indigo;
+}
+
+input[type=search], input#add-friend {
+  width: 64%;
+  height: 35px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  margin: 0 10px 10px 30px;
+  font-size: 24px;
+  padding-left: 10px;
+  display: inline-block;
+}
+
+
+input[type=search]:focus, #add-friend:focus {
+  background: rgba(255, 255, 255, 1);
+}
+
+@media only screen and (max-width: 1016px) {
+  #tracks-container {
+    text-align: center;
+  }
+  .choose-view li {
+    display: block;
+  }
+
+  nav .left {
+    display: none;
+  }
+}
+
+/* 
+.choose-view li:not(:last-child)::after {
+  content: ' - '
+} */
+
+.logo {
+  text-transform: capitalize;
+  font-family: 'Dancing Script', cursive;
+  display: inline-block;
+  font-size: 33px;
+  color: white;
+  font-weight: bold;
+  padding-left: 50px;
+}
+
+.logo a, .logo a:visited, .logo a:active {
+  display: inline-block;
+  font-size: 33px;
+  color: white;
+  text-decoration: none;
+  padding-top: 7px;
+}
+
+nav a, nav a:visited, nav a:active {
+  font-size: 22px;
+  padding-right: 26px;
+  padding-top: 15px;
+  color: white;
+}
+nav a.right, nav a.right:visited, nav a.right:active {
+  float: right;
+  display: none;
+}
+
+.loader {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid indigo; /* Blue */
+  border-radius: 50%;
+  width: 33px;
+  height: 33px;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.search-friend {
+  text-align: center;
+}
+
+.search-friend label {
+  color: indigo;
+  font-weight: bold;
+  margin: 3px;
+}
+
+.add-friend button {
+  position: relative;
+  margin-left: 140px;
+  top: -30px;
+}
+
+.search-friend input, #add-friend {
+  border-radius: 3px;
+  width: 300px;
+  height: 26px;
+  border: 0;
+  -webkit-appearance: listitem;
+  margin: 5px;
+}
+
+.message {
+  color: indigo;
+  font-weight: bold;
+}
+
+button.action {
+  background: indigo;
+  color: white;
+  height: 33px;
+  border: 0;
+  cursor: pointer;
+  width: 330px;
+  border-radius: 0;
+  font-size: 22px;
+  margin-top: 30px;
+}
+
+button.action:hover {
+  background: purple;
+  color: white;
+  height: 33px;
+  border: 0;
+  cursor: pointer;
+  width: 330px;
+  border-radius: 0;
+  font-size: 22px;
+  margin-top: 30px;
+}
+
+h2 small {
+  font-size: 14px;
+  font-weight: 100;
+  color: #444;
+}

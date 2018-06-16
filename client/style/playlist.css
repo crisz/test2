@@ -1,0 +1,42 @@
+.playlist, .friend {
+  width: 70%;
+  min-height: 80px;
+  margin: 0 auto;
+}
+
+.playlist:not(:last-child) {
+  padding-bottom: 20px;
+  border-bottom: solid 1px indigo;
+}
+
+.playlist .title {
+  text-transform: capitalize;
+}
+
+.playlist .song {
+  padding-left: 10px;
+}
+
+.play-icon {
+  display: inline-block;
+  background-image: url('../img/play-button.png');
+  width: 21px;
+  height: 21px;
+  background-size: cover;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 10px;
+  background-repeat: no-repeat;
+}
+
+.delete-icon {
+  display: inline-block;
+  background-image: url('../img/delete-button.png');
+  width: 21px;
+  height: 21px;
+  background-size: cover;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 10px;
+  background-repeat: no-repeat;
+}
