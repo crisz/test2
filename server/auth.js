@@ -12,8 +12,8 @@ var validate = require('../shared/validate');
 */
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'root',
-  password : ''
+  user     : 'vagrantdb',
+  password: 'vagrantdb'
 });
 
 
