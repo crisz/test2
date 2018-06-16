@@ -10,9 +10,10 @@ var path = require('path');
 /*
   Vengono importati i file necessari
 */
-var songs = require('./songs');
-var auth = require('./auth');
+
 var friends = require('./friends');
+var auth = require('./auth');
+var songs = require('./songs');
 var queue = require('./queue');
 var streaming = require('./streaming');
 
