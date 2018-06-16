@@ -102,7 +102,7 @@ app.use('/', function(req, res) {
   Questo è il metodo start richiamato in ../index.js
 */
 module.exports.start = function() {
-  app.listen(7777, '192.168.1.7', function() {
+  app.listen(3000, function() {
     console.log('Server started on port 3000');
   });
 }
