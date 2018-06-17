@@ -65,6 +65,7 @@ mark {
   min-height: 600px;
   margin: 15px auto;
 }
+
 .choose-view {
   display: block;
   text-align: center;
@@ -193,7 +194,18 @@ nav a.right, nav a.right:visited, nav a.right:active {
   color: indigo;
   font-weight: bold;
 }
-
+@media only screen and (max-width: 800px) {
+  button.action {
+    display: inline !important;
+    margin-left: 0 !important;
+  }
+  .add-friend {
+    text-align: center !important;
+  }
+  nav {
+    height: 124px;
+  }
+}
 button.action {
   background: indigo;
   color: white;
@@ -204,6 +216,7 @@ button.action {
   border-radius: 0;
   font-size: 22px;
   margin-top: 30px;
+  max-width: 90vw;
 }
 
 button.action:hover {

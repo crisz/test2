@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-
+var dbConfig = require('./db.config.json');
 /*
   Viene importata la funzione di validazione
 */
@@ -10,11 +10,7 @@ var validate = require('../shared/validate');
 /*
   Viene creata la connessione con il server
 */
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrantdb',
-  password: 'vagrantdb'
-});
+var connection = mysql.createConnection(dbConfig);
 
 
 /*

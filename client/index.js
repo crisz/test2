@@ -61,7 +61,6 @@ function init() {
       Se viene cliccato il tasto "logout", eliminiamo cookie e sessionStorage
       e ridirigiamo l'utente nella homescreen (o aggiornamo la pagina, se è già lì)
     */
-    
     saveSession(function() {
       sessionStorage.removeItem('username');
       document.cookie = 'username=;'
@@ -74,7 +73,7 @@ function init() {
     E diamo il benvenuto con il suo nome.
   */
   if (username) {
-    welcomeField.innerText = 'Hi '+username+'!';
+    welcomeField.innerText = 'Benvenuto '+username+'!';
     loginField.style.display = 'none';
     signupField.style.display = 'none';
     welcomeField.style.display = 'inline';
@@ -386,9 +385,13 @@ function loadPlaylists() {
 
 function loadYourFriends() {
   changeView(yourFriends);
+  if (!sessionStorage.getItem('username')) {
+    container.innerHTML = '<strong>Effettua l\'accesso e aggiungi i tuoi amici!</strong>';
+    return;
+  }
   getYourFriends(function (friends) {
     container.innerHTML = '<div class="add-friend"><label for="add-friend"><strong> Aggiungi amico </strong></label><input type="text" id="add-friend" placeholder="username">'
-                          +'<button class="action" onclick="addFriend()">Add friend</button></div>';
+                          +'<button class="action" onclick="addFriend()">Aggiungi</button></div>';
 
     console.log('bananaaa', friends);
     for (var friend in friends) {
@@ -465,7 +468,9 @@ function scrollFriends() {
 */
 function addFriend() {
   var friend = document.getElementById('add-friend').value;
-  service.addFriend(friend, function(object) {
+  service.addFriend(friend, function(data) {
+    console.log(data);
+    
     loadYourFriends();
   });
 }
@@ -492,13 +497,19 @@ function getCookie(c_name) {
   Questa funzione mostra e nasconde la coda.
   Di default, la coda è nascosta per 340px sulla destra
 */
+
+
 function toggleQueue() {
   isQueueShowed = !isQueueShowed;
 
     if (isQueueShowed) {
       queueEl.style.marginRight = '0';
     } else {
-      queueEl.style.marginRight = '-340px';
+      if (queueEl.offsetWidth!==400) {
+        queueEl.style.marginRight = '-60vw';
+      } else {
+        queueEl.style.marginRight = (-queueEl.offsetWidth+60)+'px';
+      }
     }
 }
 

@@ -1,13 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var dbConfig = require('./db.config.json');
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrantdb',
-  password: 'vagrantdb',
-  multipleStatements: true
-});
+dbConfig.multipleStatements = true;
+var connection = mysql.createConnection(dbConfig);
 
 connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
   if (err) throw err;
@@ -60,7 +57,12 @@ router.post('/queue', function (req, res) {
 
   connection.query('DELETE FROM queue WHERE ?;', {owner: req.body.owner}, function(err, data) {
     if (err) throw err;
-    if (modified_queue.length === 0) return;
+    if (modified_queue.length === 0) {
+      res.json({});
+      return res.end();
+    }
+    console.log('saving queue', modified_queue);
+    
     connection.query(`INSERT INTO queue (song_id, position, owner, seconds) VALUES ?;`, [modified_queue], function(err, data) {
       if (err) throw err;
       res.json(data);

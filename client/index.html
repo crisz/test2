@@ -32,24 +32,24 @@
     <span class="logo">
       <a href="index.html">Spotifai</a>
     </span>
-    <a onclick="scrollPublic()" class="left"> Explore songs </a>
-    <a onclick="scrollYours()" class="left"> My songs </a>
-    <a onclick="scrollPlaylist()" class="left"> See playlists </a>
-    <a onclick="scrollFriends()" class="left"> Watch friends </a>
+    <a onclick="scrollPublic()" class="left"> Esplora canzoni </a>
+    <a onclick="scrollYours()" class="left"> Le mie canzoni </a>
+    <a onclick="scrollPlaylist()" class="left"> Vedi playlist </a>
+    <a onclick="scrollFriends()" class="left"> Osserva i tuoi amici </a>
     <a href="login.html" id="login" class="right">Login</a>
-    <a href="sign-up.html" id="sign-up" class="right">Sign up</a>
+    <a href="sign-up.html" id="sign-up" class="right">Registrati</a>
     <a href="#" id="logout" class="right">Logout</a>
-    <a href="#my-songs" id="welcome" class="right"></a>
+    <a id="welcome" class="right" class="cursor: initial; text-decoration: none"></a>
   </nav>
   <div class="hero-banner" id="hero-banner">
     <div class="welcome-title">
-      Welcome in Spotifai
+      Benvenuto in Spotifai
     </div>
 
     <div class="welcome-text">
       <mark>Accedi a centinaia di brani liberamente e gratuitamente</mark>
       <br>
-      <mark>Carica le tue canzoni ed ascolte ovunque tu voglia!</mark>
+      <mark>Carica le tue canzoni ed ascoltale ovunque tu voglia!</mark>
       <br >
       <button class="action" onclick="window.location.href='/sign-up.html'" style="border: solid 1px pink">Inizia</button>
     </div>
@@ -67,16 +67,16 @@
     <div class="choose-view">
       <ul>
         <li id="public-songs">
-          Public songs
+          Canzoni pubbliche
         </li>
         <li id="your-songs">
-          Your songs
+          Le tue canzoni
         </li>
         <li id="playlists">
-          Playlists
+          Playlist
         </li>
         <li id="your-friends">
-          Your friends
+          I tuoi amici
         </li>
       </ul>
     </div>
@@ -108,7 +108,7 @@
   
       <div  style="display: inline-block; width: 60%; margin: 0; padding: 0; vertical-align: top" id="audio0">
 
-        <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
+        <audio preload id="audio1" controls="controls">Il tuo browser non supporta il tag audio!</audio>
         
       </div>
       <div class="audio-right">

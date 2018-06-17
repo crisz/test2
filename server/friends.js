@@ -1,17 +1,15 @@
 var express = require('express');
 var mysql = require('mysql');
+var dbConfig = require('./db.config.json');
 
 var router = express.Router();
 
 /*
   Viene creata la connessione al database
 */
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrantdb',
-  password: 'vagrantdb',
-  multipleStatements: true
-});
+
+dbConfig.multipleStatements = true;
+var connection = mysql.createConnection(dbConfig);
 
 /*
   Si creano le tabelle se non esistono
@@ -53,14 +51,14 @@ router.get('/friends/:username', function(req, res) {
   connection.query(`SELECT * 
                     FROM friend, user, queue, song
                     WHERE
-                      (friend1="marcocast" OR friend2="marcocast")
+                      (friend1="${username}" OR friend2="${username}")
                       AND
                       (user.username=friend1 OR user.username=friend2)
                       AND
                       (queue.owner = user.username)
                       AND
                       (song.id = queue.song_id)
-                      AND queue.owner <> "marcocast"`, function(err, data) {
+                      AND queue.owner <> "${username}"`, function(err, data) {
     if (err) {
       console.error(err);
       /*
@@ -93,9 +91,20 @@ router.get('/friends/:username', function(req, res) {
         return r;
       }, Object.create(null));
 
-
-      res.json(data);
-      res.end();
+      /*
+        La query precedente ha il problema di escludere gli amici che non hanno ascoltato ancora una canzone.
+        Per risolvere il problema, effettuiamo una nuova query in cui includiamo solo tali amici, e poi uniamo i due risultati.
+      */
+      connection.query(`SELECT * FROM friend WHERE friend1="${username}" or friend2="${username}"`, function(err, new_data) {
+        if (err) throw err;
+        new_data.forEach(function(el) {
+          var friend = el.friend1 === username ? el.friend2 : el.friend1;
+          if (!data[friend]) data[friend] = [{last_access: 0}];
+        });+
+        
+        res.json(data);
+        res.end();
+      });
     }
   });
 });
@@ -117,21 +126,40 @@ router.post('/friend/:username', function(req, res) {
   */
   var friends = { friend1, friend2 };
 
-  connection.query('INSERT INTO `friend` set ?;', friends, function (err, data) {
+  connection.query('SELECT * FROM user WHERE ?;', {username: friend1}, function(err, data) {
     if (err) {
       console.error(err);
       res.statusCode = 400;
       res.json({
-        error: 'L\'utente che hai tentato di aggiungere non esiste'
+        error: 'Impossibile aggiungere l\' utente'
+      });
+      return res.end();
+    }
+    else if (data === null || data.length === 0){
+      res.statusCode = 400;
+      res.json({
+        error: 'L\'utente inserito non esiste'
       });
       return res.end();
     }
     else {
-      res.statusCode = 200;
-      res.json({
-        message: 'Friend insertion success!'
+      connection.query('INSERT INTO `friend` set ?;', friends, function (err, data) {
+        if (err) {
+          console.error(err);
+          res.statusCode = 400;
+          res.json({
+            error: 'Impossibile aggiungere l\' utente'
+          });
+          return res.end();
+        }
+        else {
+          res.statusCode = 200;
+          res.json({
+            message: 'Friend insertion success!'
+          });
+          return res.end();
+        }
       });
-      return res.end();
     }
   });
 });

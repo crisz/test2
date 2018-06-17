@@ -163,4 +163,4 @@ var service = (function() {
   }
 
   return {deleteSong, deleteSongFromPlaylist, addFriend, getSongs, getPublicSongs, getQueue, saveQueue, getYourFriends, getPlaylists, addPlaylist, login, signup, addSongToPlaylist};
-})();
+})(); 

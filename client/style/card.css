@@ -1,3 +1,50 @@
+@media only screen and (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+  .card {
+    width: 90% !important;
+    margin: 0;
+    /* height: auto !important; */
+  }
+  .card > .image {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    margin: 20px !important;
+  }
+
+  .card .buttons {
+    left: 20px !important;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  li {
+    overflow: hidden !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+  .card {
+    width: 90% !important;
+    margin: 0;
+    /* height: auto !important; */
+  }
+  .card > .image {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .card .buttons {
+    left: 20px !important;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
 .card {
   margin: 5px;
   width: 490px;

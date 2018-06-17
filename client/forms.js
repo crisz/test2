@@ -10,6 +10,27 @@ function init() {
     }
   }
 
+  /*
+    Si modifica il prototyipo di String per poter generare l'hashcode della password
+  */
+  String.prototype.hashCode = function(){
+    var str = this;
+    var seed = undefined;
+    var asString = true;
+    /*jshint bitwise:false */
+    var i, l,
+        hval = (seed === undefined) ? 0x811c9dc5 : seed;
+
+    for (i = 0, l = str.length; i < l; i++) {
+        hval ^= str.charCodeAt(i);
+        hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+    }
+    if( asString ){
+        // Convert to 8 digit hex string
+        return ("0000000" + (hval >>> 0).toString(16)).substr(-8);
+    }
+    return hval >>> 0;
+  }
 
 
   var errorsElements = [];
@@ -102,7 +123,7 @@ function init() {
       Se non ci sono stati errori (e non siamo ritornati all'interno dell'if precedente), allora invochiamo login
       La definizione di service.login può essere trovata in client/service.js
     */
-    service.login(this.username.value, this.password.value, function(response) {
+    service.login(this.username.value, this.password.value.hashCode(), function(response) {
       if(response.error) {
         alert(response.error);
       } else {
@@ -169,6 +190,7 @@ function init() {
       return;
     }
 
+    data.password = data.password.hashCode();
     service.signup(data, function(response) {
       if (response.errorField) {
         var validateResult = response.errorField;

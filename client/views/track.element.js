@@ -35,6 +35,7 @@ function TrackEl(track) {
   addPlaylistEl.classList = 'author';
   addPlaylistEl.innerHTML = 'Aggiungi alla playlist...';
   addPlaylistEl.style.cursor = 'pointer';
+  addPlaylistEl.style.color = 'indigo';
 
   addPlaylistEl.addEventListener('click', function(evt) {
     service.getPlaylists(function(data) {
@@ -47,6 +48,7 @@ function TrackEl(track) {
   deleteEl.classList = 'author';
   deleteEl.innerHTML = 'Rimuovi canzone';
   deleteEl.style.cursor = 'pointer';
+  deleteEl.style.color = 'indigo';
 
   deleteEl.addEventListener('click', function() {
     console.log(track);
@@ -152,8 +154,9 @@ function showAddPlaylistEl(playlists, x, y, songId, obj) {
         isAlready = true;
       }
     });
-    list.innerHTML += `<li class="addPlaylist ${isAlready?'checked':'no-checked'}" onclick="addSongToPlaylist('${songId}', '${el}')">${el}</li>`;
-
+    list.innerHTML += `<li class="addPlaylist ${isAlready?'checked':'no-checked'}" onclick="addSongToPlaylist('${songId}', '${el.replace(/\'/g, '\\\'')}')">${el}</li>`;
+    console.log(list.innerHTML);
+    
   });
   list.innerHTML += '<input type="text" name="playlist-name" id="playlist-name"><br>'
   list.innerHTML += `<li class="addPlaylist" onclick="createPlaylist(${songId})">Crea nuova playlist</li>`;

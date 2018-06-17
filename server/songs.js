@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var multer = require('multer');
 var mysql = require('mysql');
+var dbConfig = require('./db.config.json');
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     if (file.mimetype === 'audio/mp3' || file.mimetype === 'audio/mpeg') {
@@ -19,13 +21,8 @@ var storage = multer.diskStorage({
   }
 });
 
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrantdb',
-  password: 'vagrantdb',
-  multipleStatements: true
-});
+dbConfig.multipleStatements = true;
+var connection = mysql.createConnection(dbConfig);
 
 connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
   if (err) throw err;

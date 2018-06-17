@@ -1,0 +1,31 @@
+Utenti Spotifai:
+
+Nome: Mario
+Cognome: Rossi
+Username: mario.rossi
+Password: mariorossi123
+email: mario.rossi@gmail.com
+
+Nome: Luca
+Cognome: Verdi
+Username: luca.verdi
+Password: lucaverdi123
+email: luca.verdi@gmail.com
+
+Nome: Pippo
+Cognome: De Pippis
+Username: pippo
+Password: pippo123
+email: pippo@gmail.com
+
+Nome: Paolino
+Cognome: Paperino
+Username: paperino
+Password: paperino123
+email: paperino@libero.it
+
+Nome: Topolino
+Cognome: MickeyMouse
+Username: topolino
+Password: topolino123
+email: topolino@yahoo.it
